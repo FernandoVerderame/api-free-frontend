@@ -18,6 +18,9 @@ export default {
                         <li class="nav-item">
                             <RouterLink class="nav-link" :to="{ name: 'home' }">Home</RouterLink>
                         </li>
+                        <li class="nav-item">
+                            <RouterLink class="nav-link" :to="{ name: 'new-post' }">Create</RouterLink>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from '../pages/HomePage.vue';
 import NotFoundPage from '../pages/NotFoundPage.vue';
 import PostDetailPage from '../pages/PostDetailPage.vue';
+import NewPost from '../pages/NewPost.vue';
 
 // Define routes
 const router = createRouter({
@@ -19,6 +20,11 @@ const router = createRouter({
             path: '/posts/:slug',
             component: PostDetailPage,
             name: 'post-detail'
+        },
+        {
+            path: '/posts/create',
+            component: NewPost,
+            name: 'new-post'
         },
         {
             path: '/not-found',
