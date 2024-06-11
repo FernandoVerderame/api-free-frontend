@@ -1,5 +1,6 @@
 <script>
 import AppLoader from './components/AppLoader.vue';
+import HomePage from './pages/HomePage.vue';
 import { store } from './data/store';
 
 export default {
@@ -9,7 +10,7 @@ export default {
     store
   }),
 
-  components: { AppLoader }
+  components: { AppLoader, HomePage }
 }
 </script>
 
@@ -18,6 +19,8 @@ export default {
   <main class="container">
 
     <AppLoader v-if="store.isLoading" />
+
+    <HomePage />
 
   </main>
 
