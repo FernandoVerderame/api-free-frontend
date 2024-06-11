@@ -1,6 +1,6 @@
 <script>
+import AppHeader from './components/AppHeader.vue';
 import AppLoader from './components/AppLoader.vue';
-import HomePage from './pages/HomePage.vue';
 import { store } from './data/store';
 
 export default {
@@ -10,11 +10,13 @@ export default {
     store
   }),
 
-  components: { AppLoader, HomePage }
+  components: { AppHeader, AppLoader }
 }
 </script>
 
 <template>
+
+  <AppHeader />
 
   <main class="container">
 
