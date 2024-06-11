@@ -45,7 +45,7 @@ export default {
                 </div>
                 <p class="card-text">{{ abstract }}</p>
                 <div class="create-date mb-3">Created on {{ pubblicationDate }}</div>
-                <div>Author: <strong>{{ post.user.name }}</strong></div>
+                <div>Author: <strong>{{ post.user?.name }}</strong></div>
             </div>
             <div class="card-footer d-flex justify-content-center">
                 <RouterLink :to="{ name: 'post-detail', params: { slug: post.slug } }" class="btn btn-primary">
@@ -77,7 +77,7 @@ export default {
                             </li>
                         </ul>
                         <div class="create-date mb-3">Created on {{ pubblicationDate }}</div>
-                        <div>Author: <strong>{{ post.user.name }}</strong></div>
+                        <div>Author: <strong>{{ post.user?.name }}</strong></div>
                     </div>
                 </div>
             </div>
