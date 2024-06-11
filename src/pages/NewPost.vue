@@ -14,7 +14,6 @@ export default {
         categories: [],
         tags: [],
         form: defaultForm,
-        isAlertOpen: false
     }),
 
     methods: {
@@ -23,11 +22,9 @@ export default {
             axios.get(endpoint ?? categoriesUrl)
                 .then(res => {
                     this.categories = res.data;
-                    this.isAlertOpen = false;
                 })
                 .catch(err => {
                     console.error(err);
-                    this.isAlertOpen = true;
                 })
                 .then(() => {
                     store.isLoading = false;
@@ -38,11 +35,9 @@ export default {
             axios.get(endpoint ?? tagsUrl)
                 .then(res => {
                     this.tags = res.data;
-                    this.isAlertOpen = false;
                 })
                 .catch(err => {
                     console.error(err);
-                    this.isAlertOpen = true;
                 })
                 .then(() => {
                     store.isLoading = false;
@@ -73,55 +68,66 @@ export default {
 </script>
 
 <template>
-    <form @submit.prevent="submitForm" novalidate>
-        <div class="row">
-            <div class="col-6">
-                <div class="my-5">
-                    <label for="title">Titolo</label>
-                    <input type="text" class="form-control" id="title" name="title" v-model.trim="form.title"
-                        placeholder="Titolo del Post">
-                </div>
+    <section id="form-section">
+        <div class="card w-50 mt-5">
+            <div class="card-header text-center">
+                <h4>Crea un nuovo Post</h4>
             </div>
-            <div class="col-6">
-                <div class="my-5">
-                    <label for="category">Categorie</label>
-                    <select class="form-select" name="categoryId" v-model="form.categoryId">
-                        <option selected disabled>Seleziona categoria</option>
-                        <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name
-                            }}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="mb-5">
-                    <label for="content">Descrizione</label>
-                    <div class="form-floating">
-                        <textarea class="form-control" name="content" v-model.trim="form.content"
-                            placeholder="Descrizione del Post..." id="content"></textarea>
+            <div class="card-body">
+                <form @submit.prevent="submitForm" novalidate>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="my-4">
+                                <label for="title">Titolo</label>
+                                <input type="text" class="form-control" id="title" name="title"
+                                    v-model.trim="form.title" placeholder="Titolo del Post">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="my-4">
+                                <label for="category">Categoria</label>
+                                <select class="form-select" name="categoryId" v-model="form.categoryId">
+                                    <option selected disabled>Seleziona categoria</option>
+                                    <option v-for="category in categories" :key="category.id" :value="category.id">
+                                        {{ category.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-4">
+                                <label for="content">Descrizione</label>
+                                <textarea class="form-control" name="content" v-model.trim="form.content"
+                                    placeholder="Descrizione del Post..." id="content" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex gap-4 flex-wrap">
+                                <div v-for="tag in tags" :key="tag.id" class="form-check">
+                                    <input class="form-check-input" type="checkbox" :name="`tags[${tag.id}]`"
+                                        :value="tag.id" :id="`tag-${tag.id}`" v-model="form.tags">
+                                    <label class="form-check-label" :for="`tag-${tag.id}`">{{ tag.name }}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-3 d-flex justify-content-between align-items-center">
+                            <button type="submit" class="btn btn-primary">Invia</button>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="published"
+                                    name="published" :value="true" v-model="form.published" checked>
+                                <label class="form-check-label" for="published">Pubblicato</label>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="d-flex gap-4">
-                    <div v-for="tag in tags" :key="tag.id" class="form-check">
-                        <input class="form-check-input" type="checkbox" :name="`tags[${tag.id}]`" :value="tag.id"
-                            :id="`tag-${tag.id}`" v-model="form.tags">
-                        <label class="form-check-label" :for="`tag-${tag.id}`">{{ tag.name }}</label>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="published" name="published"
-                        :value="true" v-model="form.published" checked>
-                    <label class="form-check-label" for="published">Pubblicato</label>
-                </div>
-            </div>
-            <div class="col-12 mt-3">
-                <button type="submit" class="btn btn-primary">Invia</button>
+                </form>
             </div>
         </div>
-    </form>
+    </section>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+#form-section {
+    display: flex;
+    justify-content: center;
+}
+</style>
