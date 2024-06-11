@@ -46,7 +46,7 @@ export default {
 
     <h1 class="mt-5 text-center">Blog</h1>
 
-    <AppAlert :show="isAlertOpen" @close="isAlertOpen = false" @retry="fetchProjects" />
+    <AppAlert :show="isAlertOpen" @close="isAlertOpen = false" @retry="fetchPosts" />
 
     <div v-if="!store.isLoading">
         <PostsList :posts="posts.data" />
