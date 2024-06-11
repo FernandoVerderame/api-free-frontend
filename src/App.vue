@@ -20,12 +20,10 @@ export default {
 
     <AppLoader v-if="store.isLoading" />
 
-    <HomePage />
+    <RouterView />
 
   </main>
 
 </template>
 
-<style lang="scss">
-@use './assets/scss/style.scss' as *;
-</style>
+<style lang="scss"></style>
