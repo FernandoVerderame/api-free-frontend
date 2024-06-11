@@ -102,6 +102,17 @@ export default {
                             </div>
                         </div>
                         <div class="col-12">
+                            <div class="mb-4">
+                                <label for="basic-url">URL Immagine</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon3">https://example.com</span>
+                                    <input type="text" class="form-control" id="basic-url" name="image"
+                                        v-model="form.image">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12">
                             <div class="d-flex gap-4 flex-wrap">
                                 <div v-for="tag in tags" :key="tag.id" class="form-check">
                                     <input class="form-check-input" type="checkbox" :name="`tags[${tag.id}]`"
