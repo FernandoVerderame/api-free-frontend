@@ -1,9 +1,26 @@
 <script>
+import AppLoader from './components/AppLoader.vue';
+import { store } from './data/store';
 
+export default {
+  name: 'Blog',
+
+  data: () => ({
+    store
+  }),
+
+  components: { AppLoader }
+}
 </script>
 
 <template>
-  <h1>Ciaoooo</h1>
+
+  <main class="container">
+
+    <AppLoader v-if="store.isLoading" />
+
+  </main>
+
 </template>
 
 <style lang="scss">
